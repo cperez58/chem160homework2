@@ -2,19 +2,13 @@ from random import choices
 ntrials=10000
 player1wins=0
 for i in range(ntrials):
-    ndice1=2
+    ndice1=3
     dice1=choices(range(1,7), k=ndice1)
-    if dice1[0]==dice1[1]:
+    dice1.sort(reverse=True)
+    if (dice1[0]*dice1[1])^2==8:
         player1wins+=1
-    ndice2=3
-    dice2=choices(range(1,7), k=ndice2)
-    dice2.sort(reverse=True)
-    if (dice1[0]+dice1[1])>=(dice2[0]+dice2[1]):
+    if (dice1[0]*dice1[2])^2==8:
         player1wins+=1
-    if dice2[0]==dice2[1]==2:
-        player1wins+=1
-    elif dice2[0]==dice2[2]==2:
-        player1wins+=1
-    elif dice2[1]==dice2[2]==2:
+    if (dice1[1]*dice1[2])^2==8:
         player1wins+=1
 print(player1wins/ntrials)
